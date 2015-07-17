@@ -1,4 +1,4 @@
-FROM skopciewski/alpine-ruby
+FROM skopciewski/ruby
 
 ENV BUNDLE_WITHOUT=""
 
