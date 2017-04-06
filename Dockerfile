@@ -1,7 +1,8 @@
 FROM skopciewski/ruby
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git apk-install-build-dependencies
 RUN gem-install pry
+RUN bundle config build.nokogiri --use-system-libraries
 
 ENV BUNDLE_WITHOUT=""
 ENV PROJECT_DIR=/opt/project/code
@@ -14,13 +15,7 @@ RUN mkdir -p ${PROJECT_DIR} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/sh ${user} \
   && chown ${user}:${user} ${PROJECT_DIR} \
   && chown -R ${user}:${user} ${GEM_HOME} \
-  && cp /root/.gemrc /home/${user}/.gemrc 
-
-USER ${user}
+  && cp /root/.gemrc /home/${user}/.gemrc \
+  && chmod 666 ${BUNDLE_APP_CONFIG}/config
 
 WORKDIR ${PROJECT_DIR}
-
-# install projects gems
-ONBUILD COPY *.gemspec ${PROJECT_DIR}/
-ONBUILD COPY Gemfile* ${PROJECT_DIR}/
-ONBUILD RUN run-ext bundle install --standalone
