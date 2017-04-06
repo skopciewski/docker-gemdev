@@ -21,6 +21,6 @@ USER ${user}
 WORKDIR ${PROJECT_DIR}
 
 # install projects gems
-ONBUILD COPY *.gemspec ${PROJECT_DIR}
-ONBUILD COPY Gemfile* ${PROJECT_DIR}
+ONBUILD COPY *.gemspec ${PROJECT_DIR}/
+ONBUILD COPY Gemfile* ${PROJECT_DIR}/
 ONBUILD RUN run-ext bundle install --standalone
