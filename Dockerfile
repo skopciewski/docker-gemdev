@@ -16,6 +16,7 @@ RUN mkdir -p ${PROJECT_DIR} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/sh ${user} \
   && cp /root/.gemrc /home/${user}/.gemrc \
   && cp -r /root/.bundle /home/${user}/.bundle \
+  && mkdir ${BUNDLE_APP_CONFIG} \
   && touch ${BUNDLE_APP_CONFIG}/config \
   && chown -R ${user}:${user} ${GEM_HOME} ${PROJECT_DIR} /home/${user}/.gemrc \
     /home/${user}/.bundle ${BUNDLE_APP_CONFIG}/config
