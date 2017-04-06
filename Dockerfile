@@ -10,9 +10,10 @@ ARG uid=1000
 ARG gid=1000
 
 RUN mkdir -p ${PROJECT_DIR} \
-  && chown ${user}:${user} ${PROJECT_DIR} \
   && addgroup -g ${gid} ${user} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/sh ${user} \
+  && chown ${user}:${user} ${PROJECT_DIR} \
+  && chown -R ${user}:${user} ${GEM_HOME} \
   && cp /root/.gemrc /home/${user}/.gemrc \
   && chmod 666 ${BUNDLE_APP_CONFIG}/config
 
