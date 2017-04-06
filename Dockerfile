@@ -1,6 +1,7 @@
 FROM skopciewski/ruby
 
-RUN apk add --no-cache git apk-install-build-dependencies
+RUN apk add --no-cache git \
+  && apk-install-build-dependencies
 RUN gem-install pry
 RUN bundle config build.nokogiri --use-system-libraries
 
