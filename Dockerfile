@@ -14,8 +14,7 @@ RUN mkdir -p ${PROJECT_DIR} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/sh ${user} \
   && chown ${user}:${user} ${PROJECT_DIR} \
   && chown -R ${user}:${user} ${GEM_HOME} \
-  && cp /root/.gemrc /home/${user}/.gemrc \
-  && chmod 666 ${BUNDLE_APP_CONFIG}/config
+  && cp /root/.gemrc /home/${user}/.gemrc 
 
 USER ${user}
 
